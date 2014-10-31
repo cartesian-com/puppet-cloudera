@@ -318,6 +318,7 @@ class cloudera (
     ensure  => $ensure,
     value   => '0',
     apply   => true,
+    provider => 'augeas',
     comment => 'Clodera recommended setting.',
     require => Anchor['cloudera::begin'],
     before  => Anchor['cloudera::end'],
