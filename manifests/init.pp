@@ -314,14 +314,13 @@ class cloudera (
   anchor { 'cloudera::begin': }
   anchor { 'cloudera::end': }
 
+  #Cloudera recommended setting.
   sysctl { 'vm.swappiness':
-    ensure  => $ensure,
-    value   => '0',
-    apply   => true,
-    provider => 'augeas',
-    comment => 'Clodera recommended setting.',
-    require => Anchor['cloudera::begin'],
-    before  => Anchor['cloudera::end'],
+    ensure    => $ensure,
+    value     => '0',
+    permanent => 'yes',
+    require   => Anchor['cloudera::begin'],
+    before    => Anchor['cloudera::end'],
   }
 
   if $install_lzo {
